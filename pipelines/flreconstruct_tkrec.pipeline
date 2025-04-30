@@ -1,0 +1,39 @@
+[name="flreconstruct.plugins" type="flreconstruct::section"]
+plugins : string[1] = "Falaise_TKReconstruct"
+Falaise_TKReconstruct.directory : string = "/pbs/home/i/iandriievsky/iandriievsky/TKrec/build/"
+
+[name="pipeline" type="dpp::chain_module"]
+  modules : string[1] = "TKReconstruct"
+
+[name="TKReconstruct" type="TKReconstruct"]
+  verbosity : string = "debug"
+  CD_label  : string = "CD"   # Input bank identifier
+  TCD_label : string = "TCD"  # Output bank identifier (tracker clusters)
+  TTD_label : string = "TTD"  # Output bank identifier (tracker trajectories)
+
+  # Configuration parameters for internal reconstruction algorithm(s) 
+  eventrec.verbosity : string = "debug"
+  eventrec.mode : string = "electron_kinked"
+  eventrec.visualization : boolean = false
+  eventrec.save_sinograms : boolean = false
+  eventrec.force_default_sigma_r : boolean = false
+  eventrec.default_sigma_r : real as length = 2.0 mm
+  eventrec.chi_square_threshold : real = 5.0
+  
+  eventrec.clustering_max_distance : real as length = 130.0 mm
+  eventrec.clustering_hit_association_distance : real as length = 6.0 mm
+  eventrec.clustering_no_iterations : integer = 2
+  eventrec.clustering_resolution_phi : integer = 100
+  eventrec.clustering_resolution_r : integer = 250
+  eventrec.clustering_max_initial_precision_r : real as length = 6.0 mm
+  eventrec.clustering_zoom_factor : real = 10.0
+  eventrec.clustering_uncertainty : real as length = 2.0 mm
+  
+  eventrec.polylines_max_extention_distance : real as length = 120.0 mm
+  eventrec.polylines_max_vertical_distance : real as length = 40.0 mm
+  eventrec.polylines_min_tracker_hits_distance : real as length = 100.0 mm  
+  eventrec.polylines_max_kink_angle : real = 120.0
+  eventrec.polylines_max_trajectories_middlepoint_distance : real as length = 10.0 mm
+  eventrec.polylines_max_trajectory_endpoints_distance : real as length = 75.0 mm 
+  eventrec.polylines_max_trajectory_connection_angle : real = 40
+  eventrec.polylines_min_distance_from_foil : real as length = 75 mm

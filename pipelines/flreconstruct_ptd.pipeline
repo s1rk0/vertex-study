@@ -1,0 +1,13 @@
+# PTD Reconstruction Pipeline: from TTD to PTD
+# Contains only the steps after tracking (TTD → PTD)
+
+[name="pipeline" type="dpp::chain_module"]
+modules : string[2] = "ChargedParticleTracker" "GammaClusterizer"
+
+[name="ChargedParticleTracker" type="snemo::reconstruction::charged_particle_tracking_module"]
+Geo_label : string  = "geometry"
+drivers : string[4] = "VED" "CCD" "CAD" "AFD"
+AFD.minimal_delayed_time : real as time = 13 us
+
+[name="GammaClusterizer" type="snemo::reconstruction::gamma_clustering_module"]
+# No parameters needed by default
