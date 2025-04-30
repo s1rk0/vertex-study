@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/bin/sh
+#SBATCH -t 0-01:00
+#SBATCH -n 1
+#SBATCH --mem 8192M
+#SBATCH --licenses sps
+
 
 # Usage:
 # ./full_chain_sim_to_ptd.sh 0nu 100
